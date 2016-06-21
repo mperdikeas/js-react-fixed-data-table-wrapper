@@ -97,12 +97,13 @@ const MyTableContainer = React.createClass({
         } else
             throw new Error('I was never expecting this method to be called when I am not mounted');
     },
-    updateDimensions: function() {
+    updateDimensions: _.throttle(function() {
         const dims = this.getContainerDimensions();
+        console.log(`Container dimensions calculated as: ${JSON.stringify(dims)})`);
         this.setState(this.getContainerDimensions());
-    },
+    }, 250),
     componentDidMount: function() {
-        window.addEventListener('resize', _.throttle(this.updateDimensions, 250));
+        window.addEventListener('resize', this.updateDimensions);
         this.updateDimensions();
     },
     componentWillUnmount: function() {
