@@ -17,5 +17,19 @@ const DefaultCell = React.createClass({
     }
 });
 
+// function f will be called with three arguments:
+// o: the row object
+// i: the index (in the filtered set)
+// col: the column name
+DefaultCell.elWithClickHandler = function (f) {
+    return (<DefaultCell
+                click={f}
+            />);
+};
+
+DefaultCell.elWithoutClickHandler = function () {
+    return (<DefaultCell/>);
+};
+
 
 exports.DefaultCell = DefaultCell;
