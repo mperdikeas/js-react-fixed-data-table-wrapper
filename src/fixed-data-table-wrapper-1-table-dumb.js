@@ -8,9 +8,11 @@ import assert from 'assert';
 
 import {MJBColumnF}  from './fixed-data-table-wrapper-1-column.js';
 
+
 class ColumnSpecification {
 
-    constructor({name, width=0, flexGrow=1, classes, dataPath, dataFunc=(x)=>x, align='right', headerEl, defaultHeaderElHeightFactor, filterGetter, filterSetter, sortSign, cycleSort}) {
+    constructor({name, width=0, flexGrow=1, classes, cellEl,
+                 dataPath, dataFunc=(x)=>x, align='right', headerEl, defaultHeaderElHeightFactor, filterGetter, filterSetter, sortSign, cycleSort}) {
         assert(typeof name     === typeof '');
         assert(typeof width    === typeof 0);
         assert(typeof flexGrow === typeof 0); // TODO: build a library for this ...
@@ -18,6 +20,7 @@ class ColumnSpecification {
         this.width    = width;
         this.flexGrow = flexGrow;
         this.classes  = classes;
+        this.cellEl   = cellEl;
         this.dataPath = dataPath;
         this.dataFunc = dataFunc;
         this.align    = align;
@@ -59,6 +62,7 @@ const MyTable = React.createClass({
                         width         : s.width,
                         flexGrow      : s.flexGrow,
                         classes       : s.classes,
+                        cellEl        : s.cellEl,
                         dataPath      : s.dataPath,
                         dataFunc      : s.dataFunc,
                         align         : s.align,

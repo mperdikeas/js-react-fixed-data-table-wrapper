@@ -14,14 +14,20 @@ import {MJBColumn, MJBCell, MJBColumnF}                    from './fixed-data-ta
 import {MyTable, ColumnSpecification}                      from './fixed-data-table-wrapper-1-table-dumb.js';
 import {TextualColumnSearchHeader, DateColumnSearchHeader} from  './fixed-data-table-wrapper-1-column-search-headers.js';
 import {Sort, SortHub, SortHolder}                         from 'sort-enum';
-
+import {DefaultCell} from './fixed-data-table-wrapper-1-cell-types.js';
 
 class HighLevelColumnConfiguration {
-    constructor({name, width=0, flexGrow=1, classes, dataPath, dataFunc, align='left', headerEl, defaultHeaderElHeightFactor=1, filterPredFact, sortFunc, filterInitialValue}) {
+    constructor({name, width=0, flexGrow=1, classes, 
+                                    cellEl=(<DefaultCell
+                                            click = {(o, i, col)=>{window.alert(`clicked on ${col}, row: ${i}, data: ${JSON.stringify(o)}`);}}
+                                            />
+                                           ),
+                 dataPath, dataFunc, align='left', headerEl, defaultHeaderElHeightFactor=1, filterPredFact, sortFunc, filterInitialValue}) {
         this.name = name;
         this.width = width;
         this.flexGrow = flexGrow;
         this.classes = classes;
+        this.cellEl   = cellEl;
         this.dataPath = dataPath;
         this.dataFunc = dataFunc;
         this.align = align;
@@ -114,6 +120,7 @@ const MyTableContainer = React.createClass({
                 width      : x.width,
                 flexGrow   : x.flexGrow,
                 classes    : x.classes,
+                cellEl     : x.cellEl,
                 dataPath   : x.dataPath,
                 dataFunc   : x.dataFunc,
                 align      : x.align,

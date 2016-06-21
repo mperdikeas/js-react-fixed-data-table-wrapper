@@ -3,6 +3,7 @@ const React = require('react');
 import {Cell, Column} from 'fixed-data-table';
 const MJBCell = require('./fixed-data-table-wrapper-1-cell.js');
 
+
 const ColumnHeader = React.createClass({
     propTypes: {
         columnNameElem  : React.PropTypes.object.isRequired,
@@ -82,7 +83,9 @@ const MJBColumn = React.createClass({
     }
 });
 
-const MJBColumnF = function (rows, {name, width, flexGrow, classes, dataPath, dataFunc, align, headerEl, heightFactor, filterGetter, filterSetter, sortSign, cycleSort}) {
+const MJBColumnF = function (rows, {name, width, flexGrow, classes,
+                                    cellEl,
+                                    dataPath, dataFunc, align, headerEl, heightFactor, filterGetter, filterSetter, sortSign, cycleSort}) {
         const newHeader = React.cloneElement(headerEl,
                                              {columnNameClasses: classes.columnName,
                                               columnName: name,
@@ -94,9 +97,12 @@ const MJBColumnF = function (rows, {name, width, flexGrow, classes, dataPath, da
         return (
                 <Column
                 key     ={name}
+                columnKey={name}
                 width   ={width}
                 flexGrow={flexGrow}
-                cell    ={<MJBCell className={cx.apply(null, classes.cells)}
+            cell    ={<MJBCell
+                          cellEl={cellEl}
+                          className={cx.apply(null, classes.cells)}
                           rows    ={rows}
                           jsPath  ={dataPath}
                           f={dataFunc}
