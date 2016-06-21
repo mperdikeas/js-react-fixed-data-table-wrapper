@@ -48,10 +48,8 @@ const MyTable = React.createClass({
     columns: function() {
         let maxInitialHeightFactor = -1;
         for (let i = 0 ; i < this.props.columnSpecs.length; i++) {
-            console.log(this.props.columnSpecs[i].defaultHeaderElHeightFactor);
             maxInitialHeightFactor = Math.max(maxInitialHeightFactor, this.props.columnSpecs[i].defaultHeaderElHeightFactor);
         }
-        console.log(`maxInitialHeightFactor calculated as: ${maxInitialHeightFactor}`);
         return {
             maxHeightFactor: maxInitialHeightFactor,
             columns: this.props.columnSpecs.map ( (s) => {

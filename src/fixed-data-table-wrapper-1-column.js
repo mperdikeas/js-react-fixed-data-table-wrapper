@@ -61,7 +61,6 @@ const MJBColumn = React.createClass({
         cycleSearchOrder : React.PropTypes.func.isRequired
     },
     render: function() {
-        console.log('foo');
         const newHeader = React.cloneElement(this.props.headerEl,
                                              {columnName: this.props.columnName,
                                               searchFilter: this.props.searchFilter.v,

@@ -23,12 +23,6 @@ const MJBCell = React.createClass({
         const {rows, jsPath, f, height, width, ...rv2} =  this.props; // this is an alternative way to ignore properties
         if (!_.isEqual(rv, rv2))
             throw new Error();
-        if (false) {
-            console.log(`Keeping only ${_.keys(rv).length} properties out of an initial total of ${_.keys(this.props).length}`);
-            for (let k in rv) {
-                console.log(`${k} -> ${rv[k]}`);
-            }
-        }
         return rv;
     },
     
