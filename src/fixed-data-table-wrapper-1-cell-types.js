@@ -17,19 +17,17 @@ const DefaultCell = React.createClass({
     }
 });
 
-// function f will be called with three arguments:
+// function [clickHandler] will be called with three arguments:
 // o: the row object
 // i: the index (in the filtered set)
 // col: the column name
-DefaultCell.elWithClickHandler = function (f) {
-    return (<DefaultCell
-                click={f}
-            />);
+DefaultCell.el = function (clickHandler) {
+    if (clickHandler)
+        return (<DefaultCell
+                click={clickHandler}
+                />);
+    else
+        return (<DefaultCell/>);
 };
-
-DefaultCell.elWithoutClickHandler = function () {
-    return (<DefaultCell/>);
-};
-
 
 exports.DefaultCell = DefaultCell;

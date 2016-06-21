@@ -18,7 +18,7 @@ import {DefaultCell} from './fixed-data-table-wrapper-1-cell-types.js';
 
 class HighLevelColumnConfiguration {
     constructor({name, width=0, flexGrow=1, classes, 
-                 cellEl=DefaultCell.elWithClickHandler( (o, i, col)=>{window.alert(`clicked on ${col}, row: ${i}, data: ${JSON.stringify(o)}`);} ),
+                 cellEl=DefaultCell.el( (o, i, col)=>{window.alert(`clicked on ${col}, row: ${i}, data: ${JSON.stringify(o)}`);} ),
                  dataPath, dataFunc, align='left', headerEl, defaultHeaderElHeightFactor=1, filterPredFact, sortFunc, filterInitialValue}) {
         this.name = name;
         this.width = width;
