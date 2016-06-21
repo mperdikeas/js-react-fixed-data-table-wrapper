@@ -10,7 +10,11 @@ const DefaultCell = React.createClass({
                },
     render: function() {
         const {v, o, ...allPropsExceptVO} = this.props;
-        return (<Cell {...allPropsExceptVO} onClick={()=>{this.props.click(o, this.props.rowIndex, this.props.columnKey);}}>
+        const props = Object.assign(allPropsExceptVO, this.props.click?
+                                    {onClick: ()=>{this.props.click(o, this.props.rowIndex, this.props.columnKey);}}
+                                    : {});
+                                    
+        return (<Cell {...props}>
                     {v}
                 </Cell>
                );
