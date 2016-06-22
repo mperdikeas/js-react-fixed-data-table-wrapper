@@ -47,7 +47,8 @@ const MyTableContainer = React.createClass({
 
     propTypes: {
         rows   : React.PropTypes.instanceOf(FilteredDataStore).isRequired,
-        highColumnConfigs : React.PropTypes.array.isRequired
+        highColumnConfigs : React.PropTypes.array.isRequired,
+        footNotePrefix      : React.PropTypes.string
     },
     generateAllApplicableFilters: function(stateToUse) {
         const configAndFilters = _.zip(this.props.highColumnConfigs, stateToUse.filters);
@@ -144,7 +145,7 @@ const MyTableContainer = React.createClass({
             height              = {this.state.height}
 
             columnSpecs         = {lowLevelColumnSpecs}
-
+            footNotePrefix = {this.props.footNotePrefix}
             />
         );
     }

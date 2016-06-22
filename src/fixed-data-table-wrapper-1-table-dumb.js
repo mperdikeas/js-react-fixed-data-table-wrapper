@@ -42,7 +42,8 @@ const MyTable = React.createClass({
         height              : React.PropTypes.number.isRequired,
         columnSpecs         : React.PropTypes.arrayOf( (propValue, key)=>
             assert.equal(propValue[key].constructor, ColumnSpecification)
-            ).isRequired
+                                                     ).isRequired,
+        footNotePrefix      : React.PropTypes.string
     },
 
     columns: function() {
@@ -79,6 +80,12 @@ const MyTable = React.createClass({
         const footerOuterDivStyle = {background: 'lightdblue', padding: '0.2em'};
         const footerInnerDivStyle = {background: '#dee', fontFamily: 'monospace', fontSize: '70%', borderRadius: '0.5em', padding: '0.3em', fontStyle: 'italic'};
         const columns = this.columns();
+        const prefix = (()=>{
+            if (this.props.footNotePrefix)
+                return (<span>{this.props.footNotePrefix} <b>*</b> </span>);
+            else
+                return null;
+        })();
         return (
             <div>
                 <Table id='foo'
@@ -90,7 +97,8 @@ const MyTable = React.createClass({
                     {columns.columns}
                 </Table>
                 <div style={footerOuterDivStyle}>
-                    <div style={footerInnerDivStyle}>
+                <div style={footerInnerDivStyle}>
+                        {prefix}
                         A total of <b>{this.props.rows.length}</b> rows matched the
                         filters (out of total of {this.props.sizeOfUnfilteredColl})
                     </div>
