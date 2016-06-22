@@ -99,7 +99,6 @@ const MyTableContainer = React.createClass({
     },
     updateDimensions: _.throttle(function() {
         const dims = this.getContainerDimensions();
-        console.log(`Container dimensions calculated as: ${JSON.stringify(dims)})`);
         this.setState(this.getContainerDimensions());
     }, 250),
     componentDidMount: function() {
