@@ -81,9 +81,10 @@ const MyTable = React.createClass({
         const footerInnerDivStyle = {background: '#dee', fontFamily: 'monospace', fontSize: '70%', borderRadius: '0.5em', padding: '0.3em', fontStyle: 'italic'};
         const columns = this.columns();
         const prefix = (()=>{
-            if (this.props.footNotePrefix)
-                return (<span>{this.props.footNotePrefix} <b>*</b> </span>);
-            else
+            if (this.props.footNotePrefix) {
+                const STAR = (<span style={{marginLeft: '.5em', marginRight: '.5em', fontSize:'200%', fontWeight: 'bold', fontStyle: 'normal', position: 'relative', top: '0.1em'}}>&#9734;</span>);
+                return (<span>{this.props.footNotePrefix}{STAR}</span>);
+            } else
                 return null;
         })();
         return (
@@ -100,7 +101,7 @@ const MyTable = React.createClass({
                 <div style={footerInnerDivStyle}>
                         {prefix}
                         A total of <b>{this.props.rows.length}</b> rows matched the
-                        filters (out of total of {this.props.sizeOfUnfilteredColl})
+                        filters (out of total of {this.props.sizeOfUnfilteredColl} locally fetched)
                     </div>
                 </div>
             </div>
